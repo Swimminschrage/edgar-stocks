@@ -1,6 +1,16 @@
 # Edgar
 
-TODO: Write a gem description
+Edgar is a Ruby gem that provides access to historical stock data in a simple, configurable way.
+
+Edgar provides the following info for a stock:
+- Opening price
+- Closing price
+- Daily high
+- Daily low
+- Adjusted close
+- Volume
+
+In addition to the above, Edgar can calculate the rolling average for a given date for a particular stock.
 
 ## Installation
 
@@ -18,7 +28,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Coming soon!
 
 ## Contributing
 
