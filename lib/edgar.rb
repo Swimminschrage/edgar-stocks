@@ -6,7 +6,7 @@ require 'time'
 module Edgar
 
   class Edgar
-    attr_accessor :symbol
+    attr_reader :symbol
 
     # Configuration defaults
     @@config = {
@@ -76,8 +76,6 @@ module Edgar
       @data[1..@data.size].each_index do |index|
         row = @data[index+1]
 
-        #return row[column] if row[0] == formatted_date
-
         return sum_and_average(index+1, running, column) if row[0] == formatted_date
 
         if DateTime.parse(row[0]) < date
@@ -100,7 +98,9 @@ module Edgar
       # Round off to at most two digits
       round_to = Edgar.config[:round_to]
       round_to = 2 if round_to < 0
-      (total / days).round(round_to)
+
+      denom = @data[start, days].size
+      (total / denom).round(round_to)
     end
   end
 

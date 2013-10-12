@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Edgar::VERSION
   spec.authors       = ["Andy Schrage"]
   spec.email         = ["ajschrag@mtu.edu"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Edgar is a Ruby gem that provides access to historical stock data in a simple, configurable way.}
+  spec.summary       = %q{Stock data since the beginning of time!}
+  spec.homepage      = "https://github.com/Swimminschrage/edgar"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

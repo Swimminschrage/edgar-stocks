@@ -5,6 +5,7 @@ describe 'Edgar' do
   let(:stock) {Edgar::Edgar.new('INTU')}
   let(:firstday) {DateTime.new(2013,10,1)}
   let(:weekend_day) {DateTime.new(2013,9,21)}
+  let(:future_day) {DateTime.new(2020,1,1)}
   subject {stock}
 
   it 'should have a reference to the symbol' do
@@ -70,6 +71,14 @@ describe 'Edgar' do
     let(:past_day) {DateTime.new(1919,1,1)}
     it 'should return nil' do
       expect(stock.opening_price(past_day)).to be_nil
+    end
+
+    it 'should return the average using any valid dates when all are valid' do
+      expect(stock.opening_price(DateTime.new(1993, 3, 23), 2)).to eq(29.50)
+    end
+
+    it 'should return the average using any valid dates when some are invalid' do
+      expect(stock.opening_price(DateTime.new(1993, 3, 23), 6)).to eq(29.50)
     end
   end
 
