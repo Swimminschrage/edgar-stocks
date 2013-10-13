@@ -18,7 +18,7 @@ Have more ideas how I can improve the gem?  Leave me a message!
 
 Add this line to your application's Gemfile:
 
-    gem 'edgar'
+    gem 'edgar-stocks'
 
 And then execute:
 
@@ -26,7 +26,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install edgar
+    $ gem install 'edgar-stocks'
 
 ## Usage
 
