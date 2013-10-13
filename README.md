@@ -1,6 +1,6 @@
-# Edgar
+# Edgar-Stocks
 
-Edgar is a Ruby gem that provides access to historical stock data in a simple, configurable way.
+Edgar-Stocks is a Ruby gem that provides access to historical stock data in a simple, configurable way.
 
 Edgar provides the following info for a stock:
 - Opening price
