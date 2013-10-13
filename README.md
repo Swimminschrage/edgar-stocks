@@ -1,4 +1,5 @@
 # Edgar-Stocks
+[![Gem Version](https://badge.fury.io/rb/edgar-stocks.png)](http://badge.fury.io/rb/edgar-stocks)
 
 Edgar-Stocks is a Ruby gem that provides access to historical stock data in a simple, configurable way.
 
