@@ -40,31 +40,31 @@ module Edgar
 
     def closing_price(date = DateTime.now, running = 1)
       return nil if date > DateTime.now
-      return lookup_daily_info 'p' if date > @midnight
+      return lookup_daily_info 'p' if date > @midnight && running == 1
       lookup_by_column(running, date, 4)
     end
 
     def opening_price(date = DateTime.now, running = 1)
       return nil if date > DateTime.now
-      return lookup_daily_info 'o' if date > @midnight
+      return lookup_daily_info 'o' if date > @midnight && running == 1
       lookup_by_column(running, date, 1)
     end
 
     def high_price(date = DateTime.now, running = 1)
       return nil if date > DateTime.now
-      return lookup_daily_info 'h' if date > @midnight
+      return lookup_daily_info 'h' if date > @midnight && running == 1
       lookup_by_column(running, date, 2)
     end
 
     def low_price(date = DateTime.now, running = 1)
       return nil if date > DateTime.now
-      return lookup_daily_info 'g' if date > @midnight
+      return lookup_daily_info 'g' if date > @midnight && running == 1
       lookup_by_column(running, date, 3)
     end
 
     def volume(date = DateTime.now, running = 1)
       return nil if date > DateTime.now
-      return lookup_daily_info 'v' if date > @midnight
+      return lookup_daily_info 'v' if date > @midnight && running == 1
       lookup_by_column(running, date, 5)
     end
 
