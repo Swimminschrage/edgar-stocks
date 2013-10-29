@@ -40,6 +40,35 @@ describe 'Edgar' do
     expect(stock.volume(firstday)).to eq(2095700)
   end
 
+=begin
+  it 'should be able to get the current price' do
+    expect(stock.current_price).to eq '70.84'
+  end
+=end
+
+  describe 'can look up daily' do
+
+    it 'differently than historically' do
+      stock.should_receive(:lookup_daily_info)
+      stock.should_not_receive(:lookup_by_column)
+      stock.high_price
+    end
+
+=begin
+      Uncomment and update with the day's high/low since we can't predict
+      what the daily high/low will be
+
+    it 'high price' do
+      expect(stock.high_price).to eq '71.00'
+    end
+
+    it 'low price' do
+      expect(stock.low_price).to eq '70.24'
+    end
+=end
+  end
+
+
   describe 'when configured to look to the next day' do
     before (:all) do
       Edgar::Edgar.configure({:lookup_offset => 1})

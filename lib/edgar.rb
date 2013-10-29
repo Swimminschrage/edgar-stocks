@@ -27,29 +27,49 @@ module Edgar
     def initialize(symbol)
       @symbol = symbol
 
+      @midnight = Date.today
+
       # Perform the actual lookup of historical data and parse it into arrays that
       # are cached in memory
       @data = CSV.parse(lookup)
     end
 
+    def current_price
+      lookup_daily_info 'l1'
+    end
+
     def closing_price(date = DateTime.now, running = 1)
+      return nil if date > DateTime.now
+      return lookup_daily_info 'p' if date > @midnight
       lookup_by_column(running, date, 4)
     end
 
     def opening_price(date = DateTime.now, running = 1)
+      return nil if date > DateTime.now
+      return lookup_daily_info 'o' if date > @midnight
       lookup_by_column(running, date, 1)
     end
 
     def high_price(date = DateTime.now, running = 1)
+      return nil if date > DateTime.now
+      return lookup_daily_info 'h' if date > @midnight
       lookup_by_column(running, date, 2)
     end
 
     def low_price(date = DateTime.now, running = 1)
+      return nil if date > DateTime.now
+      return lookup_daily_info 'g' if date > @midnight
       lookup_by_column(running, date, 3)
     end
 
     def volume(date = DateTime.now, running = 1)
+      return nil if date > DateTime.now
+      return lookup_daily_info 'v' if date > @midnight
       lookup_by_column(running, date, 5)
+    end
+
+    def pe_ratio
+      lookup_daily_info 'r2'
     end
 
     private
@@ -62,8 +82,23 @@ module Edgar
       uri = URI("http://ichart.finance.yahoo.com/table.csv?s=#{@symbol}")
       response = Net::HTTP.get_response(uri)
 
-      raise InvalidSymbolError.new("Unable to lookup '#{symbol}'") unless response.code == "200"
+      raise InvalidSymbolError.new("Unable to lookup '#{@symbol}'") unless response.code == "200"
       response.body
+    end
+
+    def get_daily_data(property)
+      property = [property] if property.instance_of? String
+
+      uri = URI("http://download.finance.yahoo.com/d/quotes.csv?s=#{@symbol}&f=#{property.join('')}&e=.csv")
+      response = Net::HTTP.get_response(uri)
+
+      raise InvalidSymbolError.new("Unable to lookup '#{@symbol}'") unless response.code == '200'
+      response.body
+    end
+
+    def lookup_daily_info(property)
+      all_data = CSV.parse get_daily_data(property)
+      all_data[0][0]
     end
 
     def lookup_by_column(running, date, column)
