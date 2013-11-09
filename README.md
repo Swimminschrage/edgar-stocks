@@ -1,7 +1,7 @@
 # Edgar-Stocks
 [![Gem Version](https://badge.fury.io/rb/edgar-stocks.png)](http://badge.fury.io/rb/edgar-stocks)
 
-Edgar-Stocks is a Ruby gem that provides access to historical stock data in a simple, configurable way.
+Edgar-Stocks is a Ruby gem that provides access to daily and historical stock data in a simple, configurable way.
 
 Edgar provides the following info for a stock:
 - Opening price
@@ -31,8 +31,9 @@ Or install it yourself as:
 
 ## Usage
 
-Simply create a new Edgar object for each stock you care about:
+Require the Edgar library and simply create a new Edgar object for each stock you care about:
 
+    require 'edgar'
     stock = Edgar::Edgar.new('INTU')
 
 Then query it!
